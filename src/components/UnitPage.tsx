@@ -155,7 +155,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
                 <ListChecks size={18} color="var(--color-sky-blue)" /> Learning Path Activities
               </h3>
 
-              <div style={{
+              <div className="roadmap-grid" style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                 gap: '0.8rem'

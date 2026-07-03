@@ -125,7 +125,7 @@ export const QuizController: React.FC<QuizControllerProps> = ({ unit, onComplete
     }}>
       
       {/* Quiz Navigation Header */}
-      <header style={{
+      <header className="quiz-header-nav" style={{
         padding: '1.2rem 2.5rem',
         backgroundColor: 'var(--color-white)',
         borderBottom: '1px solid rgba(79, 157, 255, 0.1)',
@@ -214,7 +214,7 @@ export const QuizController: React.FC<QuizControllerProps> = ({ unit, onComplete
       </header>
 
       {/* Main active question workspace */}
-      <main style={{
+      <main className="quiz-main-layout" style={{
         flex: 1,
         padding: '2rem 1.5rem',
         display: 'flex',

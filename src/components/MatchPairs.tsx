@@ -179,6 +179,7 @@ export const MatchPairs: React.FC<MatchPairsProps> = ({ questionData, onAnswer }
       {/* Matching Board with SVG overlay */}
       <div
         ref={containerRef}
+        className="match-pairs-board"
         style={{
           position: 'relative',
           display: 'flex',
@@ -250,7 +251,7 @@ export const MatchPairs: React.FC<MatchPairsProps> = ({ questionData, onAnswer }
         </svg>
 
         {/* LEFT COLUMN - Concepts */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '42%', zIndex: 10 }}>
+        <div className="match-pairs-col" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '42%', zIndex: 10 }}>
           {leftItems.map((item, idx) => {
             const isSelected = selectedLeft === item;
             const isConnected = activeConnections.some(c => c.leftText === item && c.status === 'correct');
@@ -289,13 +290,14 @@ export const MatchPairs: React.FC<MatchPairsProps> = ({ questionData, onAnswer }
               <div
                 key={idx}
                 style={cardStyle}
-                className={isWrong ? 'animate-shake' : ''}
+                className={`match-pairs-card ${isWrong ? 'animate-shake' : ''}`}
                 onClick={() => handleLeftClick(item)}
               >
                 <span style={{ color: 'var(--color-navy)' }}>{item}</span>
                 {/* Connector Dot */}
                 <div
                   id={`left-${sanitizedId}`}
+                  className="match-dot-left"
                   style={{
                     width: '10px',
                     height: '10px',
@@ -315,7 +317,7 @@ export const MatchPairs: React.FC<MatchPairsProps> = ({ questionData, onAnswer }
         </div>
 
         {/* RIGHT COLUMN - Definitions */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '42%', zIndex: 10 }}>
+        <div className="match-pairs-col" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '42%', zIndex: 10 }}>
           {rightItems.map((item, idx) => {
             const isSelected = selectedRight === item;
             const isConnected = activeConnections.some(c => c.rightText === item && c.status === 'correct');
@@ -354,12 +356,13 @@ export const MatchPairs: React.FC<MatchPairsProps> = ({ questionData, onAnswer }
               <div
                 key={idx}
                 style={cardStyle}
-                className={isWrong ? 'animate-shake' : ''}
+                className={`match-pairs-card ${isWrong ? 'animate-shake' : ''}`}
                 onClick={() => handleRightClick(item)}
               >
                 {/* Connector Dot */}
                 <div
                   id={`right-${sanitizedId}`}
+                  className="match-dot-right"
                   style={{
                     width: '10px',
                     height: '10px',

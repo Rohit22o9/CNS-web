@@ -492,7 +492,7 @@ export const DragDropImage: React.FC<DragDropImageProps> = ({ questionData, onAn
       </p>
 
       {/* Interactive Diagram Container */}
-      <div style={{ position: 'relative', width: '100%', borderRadius: '16px', overflow: 'hidden' }}>
+      <div className="diagram-container" style={{ position: 'relative', width: '100%', borderRadius: '16px', overflow: 'hidden' }}>
         {renderDiagram()}
 
         {/* Absolute overlays for target slots */}

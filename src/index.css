@@ -280,3 +280,152 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-sky-blue);
 }
+
+/* ==========================================
+   Responsive Design / Mobile Adaptability
+   ========================================== */
+
+@media (max-width: 900px) {
+  .hero-split-row {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: stretch !important;
+  }
+  .hero-split-row > div {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Common Layout elements */
+  .container {
+    padding: 0 1rem !important;
+  }
+  
+  .landing-container header {
+    padding: 0.8rem 1rem !important;
+  }
+  
+  .landing-container main {
+    padding: 0.8rem 1rem !important;
+    gap: 1rem !important;
+  }
+  
+  /* Quiz Card adjustments */
+  .quiz-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 20px !important;
+    gap: 1.2rem !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .quiz-card h1 {
+    font-size: 1.2rem !important;
+  }
+
+  .quiz-card p {
+    font-size: 0.85rem !important;
+    padding: 0.8rem 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .roadmap-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  /* Navigation Header */
+  .quiz-header-nav {
+    padding: 0.8rem 1rem !important;
+    gap: 0.6rem !important;
+  }
+
+  .quiz-main-layout {
+    padding: 0.8rem 0.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Text & Headers scaling */
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  h2 {
+    font-size: 0.9rem !important;
+  }
+  
+  /* Units cards row grid */
+  .units-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  /* MCQ option cards */
+  .quiz-option {
+    padding: 0.85rem 1rem !important;
+    font-size: 0.88rem !important;
+    border-radius: 12px !important;
+  }
+  
+  .quiz-option span {
+    font-size: 0.88rem !important;
+  }
+
+  /* Match Pairs board columns and dots adjustments */
+  .match-pairs-board {
+    gap: 1.5rem !important;
+    padding: 0.5rem 0 !important;
+  }
+  
+  .match-pairs-col {
+    width: 47% !important;
+    gap: 0.8rem !important;
+  }
+  
+  .match-pairs-card {
+    padding: 0.6rem 0.8rem !important;
+    font-size: 0.76rem !important;
+    border-radius: 10px !important;
+  }
+  
+  .match-dot-left {
+    right: -10px !important;
+    width: 8px !important;
+    height: 8px !important;
+  }
+  
+  .match-dot-right {
+    left: -10px !important;
+    width: 8px !important;
+    height: 8px !important;
+  }
+
+  /* Drag and Drop diagrams target slots */
+  .target-slot {
+    width: 90px !important;
+    height: 28px !important;
+    font-size: 0.65rem !important;
+    border-radius: 6px !important;
+  }
+  
+  .target-slot span {
+    font-size: 0.65rem !important;
+    gap: 0.1rem !important;
+  }
+
+  /* Blank slots in text wrapping */
+  .blank-slot {
+    min-width: 80px !important;
+    height: 30px !important;
+    font-size: 0.85rem !important;
+    margin: 0 0.15rem !important;
+    border-radius: 6px !important;
+  }
+
+  .diagram-container svg {
+    min-height: 180px !important;
+  }
+}
+

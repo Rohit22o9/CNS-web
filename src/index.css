@@ -202,6 +202,30 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--color-soft-blue);
 }
 
+/* Learning path activity card interactive styles */
+.activity-card {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.8rem;
+  background-color: var(--color-light-gray);
+  border-radius: 12px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition-smooth);
+}
+
+.activity-card:hover {
+  transform: translateY(-3px);
+  background-color: var(--color-soft-blue);
+  border-color: var(--color-sky-blue);
+  box-shadow: var(--shadow-soft);
+}
+
+.activity-card:active {
+  transform: translateY(-1px);
+}
+
 /* Quiz Option Card states */
 .quiz-option {
   background-color: var(--color-white);

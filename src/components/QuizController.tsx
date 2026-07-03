@@ -12,10 +12,18 @@ interface QuizControllerProps {
   unit: UnitData;
   onComplete: (score: number) => void;
   onBackToHome: () => void;
+  onBackToWelcome: () => void;
+  initialStep?: number;
 }
 
-export const QuizController: React.FC<QuizControllerProps> = ({ unit, onComplete, onBackToHome }) => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+export const QuizController: React.FC<QuizControllerProps> = ({ 
+  unit, 
+  onComplete, 
+  onBackToHome, 
+  onBackToWelcome,
+  initialStep = 0 
+}) => {
+  const [currentStep, setCurrentStep] = useState<number>(initialStep);
   const [score, setScore] = useState<number>(0);
   const [animateKey, setAnimateKey] = useState<number>(0); // forces re-animation on step change
 
@@ -140,22 +148,48 @@ export const QuizController: React.FC<QuizControllerProps> = ({ unit, onComplete
         gap: '1rem'
       }}>
         
-        {/* Left side: Back to Home & Unit Info */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {/* Left side: Back to Welcome, Home & Unit Info */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           <button
-            onClick={onBackToHome}
+            onClick={onBackToWelcome}
             className="btn-secondary"
+            title="Back to Unit Welcome Screen"
             style={{
               padding: '0.4rem 0.8rem',
               borderRadius: '8px',
               borderWidth: '1px',
-              fontSize: '0.85rem'
+              fontSize: '0.85rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem'
             }}
           >
-            <ArrowLeft size={16} /> Home
+            <ArrowLeft size={16} /> Back
+          </button>
+
+          <button
+            onClick={onBackToHome}
+            className="btn-secondary"
+            title="Go to Home Dashboard"
+            style={{
+              padding: '0.4rem 0.8rem',
+              borderRadius: '8px',
+              borderWidth: '1px',
+              fontSize: '0.85rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '36px',
+              height: '34px'
+            }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
           </button>
           
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '0.4rem' }}>
             <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--color-text-light)', textTransform: 'uppercase' }}>
               Unit {unit.id} Learn Lab
             </span>

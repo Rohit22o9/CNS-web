@@ -19,6 +19,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
 }) => {
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
   const [started, setStarted] = useState<boolean>(false);
+  const [initialStep, setInitialStep] = useState<number>(0);
   const [finalScore, setFinalScore] = useState<number>(0);
 
   // Reset states when switching units
@@ -26,6 +27,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
     setQuizCompleted(false);
     setFinalScore(0);
     setStarted(false);
+    setInitialStep(0);
   }, [unit]);
 
   const handleQuizComplete = (score: number) => {
@@ -37,12 +39,18 @@ export const UnitPage: React.FC<UnitPageProps> = ({
     setQuizCompleted(false);
     setFinalScore(0);
     setStarted(false);
+    setInitialStep(0);
   };
 
   const handleNextUnit = () => {
     if (hasNextUnit) {
       onSelectUnit(unit.id + 1);
     }
+  };
+
+  const startQuizAtStep = (step: number) => {
+    setInitialStep(step);
+    setStarted(true);
   };
 
   // Helper to fetch unit-specific icons
@@ -160,7 +168,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                 gap: '0.8rem'
               }}>
-                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', padding: '0.8rem', backgroundColor: 'var(--color-light-gray)', borderRadius: '12px' }}>
+                <div onClick={() => startQuizAtStep(0)} className="activity-card">
                   <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-sky-blue)', backgroundColor: 'var(--color-white)', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>A</span>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-navy)' }}>Multiple Choice Questions</span>
@@ -168,7 +176,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', padding: '0.8rem', backgroundColor: 'var(--color-light-gray)', borderRadius: '12px' }}>
+                <div onClick={() => startQuizAtStep(4)} className="activity-card">
                   <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-sky-blue)', backgroundColor: 'var(--color-white)', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>B</span>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-navy)' }}>Fill in the Blanks</span>
@@ -176,7 +184,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', padding: '0.8rem', backgroundColor: 'var(--color-light-gray)', borderRadius: '12px' }}>
+                <div onClick={() => startQuizAtStep(8)} className="activity-card">
                   <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-sky-blue)', backgroundColor: 'var(--color-white)', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>C</span>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-navy)' }}>Drag & Drop to Text</span>
@@ -184,7 +192,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', padding: '0.8rem', backgroundColor: 'var(--color-light-gray)', borderRadius: '12px' }}>
+                <div onClick={() => startQuizAtStep(10)} className="activity-card">
                   <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-sky-blue)', backgroundColor: 'var(--color-white)', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>D</span>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-navy)' }}>Drag & Drop to Image</span>
@@ -192,7 +200,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', padding: '0.8rem', backgroundColor: 'var(--color-light-gray)', borderRadius: '12px' }}>
+                <div onClick={() => startQuizAtStep(12)} className="activity-card">
                   <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-sky-blue)', backgroundColor: 'var(--color-white)', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>E</span>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-navy)' }}>Match the Pairs Matrix</span>
@@ -200,7 +208,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', padding: '0.8rem', backgroundColor: 'var(--color-light-gray)', borderRadius: '12px' }}>
+                <div onClick={() => startQuizAtStep(13)} className="activity-card">
                   <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--color-sky-blue)', backgroundColor: 'var(--color-white)', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>F</span>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-navy)' }}>Applied Numerical & Concepts</span>
@@ -234,7 +242,7 @@ export const UnitPage: React.FC<UnitPageProps> = ({
                 <ArrowLeft size={18} /> Back to Dashboard
               </button>
               <button
-                onClick={() => setStarted(true)}
+                onClick={() => startQuizAtStep(0)}
                 className="btn-primary"
                 style={{ flex: 1.5, justifyContent: 'center', padding: '0.9rem', fontSize: '0.95rem' }}
               >
@@ -249,6 +257,8 @@ export const UnitPage: React.FC<UnitPageProps> = ({
           unit={unit}
           onComplete={handleQuizComplete}
           onBackToHome={onBackToHome}
+          onBackToWelcome={() => setStarted(false)}
+          initialStep={initialStep}
         />
       )}
     </div>

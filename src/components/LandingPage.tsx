@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Network, Layers, Globe, ArrowRightLeft, ShieldCheck, CheckCircle } from 'lucide-react';
 import { NetworkAnimation } from './NetworkAnimation';
 import type { UnitData } from '../data/unitsData';
+import jspmLogo from '../assets/jspm-logo.png';
+import jscoeLogo from '../assets/jscoe-logo.png';
 
 interface LandingPageProps {
   units: UnitData[];
@@ -72,36 +74,58 @@ export const LandingPage: React.FC<LandingPageProps> = ({ units, onSelectUnit })
         zIndex: 1,
         borderBottom: '1px solid rgba(79, 157, 255, 0.1)',
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        backdropFilter: 'blur(10px)'
+        backdropFilter: 'blur(10px)',
+        flexWrap: 'wrap',
+        gap: '1rem'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+        {/* Left Side: Logos & App Title */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flexWrap: 'wrap' }}>
+          <img src={jspmLogo} alt="JSPM Logo" style={{ height: '40px', objectFit: 'contain' }} />
+          <img src={jscoeLogo} alt="JSCOE Logo" style={{ height: '40px', objectFit: 'contain' }} />
           <div style={{
-            backgroundColor: 'var(--color-soft-blue)',
-            padding: '0.5rem',
-            borderRadius: '10px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <Network size={24} color="var(--color-sky-blue)" strokeWidth={2.5} />
+            width: '1px',
+            height: '30px',
+            backgroundColor: 'var(--color-border)',
+            margin: '0 0.2rem'
+          }}></div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{
+              fontFamily: 'var(--font-primary)',
+              fontWeight: 800,
+              fontSize: '1.25rem',
+              color: 'var(--color-navy)',
+              letterSpacing: '-0.5px',
+              lineHeight: '1.2'
+            }}>EduCNS</span>
+            <span style={{
+              fontSize: '0.65rem',
+              color: 'var(--color-text-light)',
+              fontWeight: 600,
+              letterSpacing: '0.3px'
+            }}>COMPUTER NETWORKS & SECURITY</span>
           </div>
-          <span style={{
-            fontFamily: 'var(--font-primary)',
-            fontWeight: 800,
-            fontSize: '1.25rem',
-            color: 'var(--color-navy)',
-            letterSpacing: '-0.5px'
-          }}>EduCNS</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        
+        {/* Right Side: College Name */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', textAlign: 'right' }}>
           <span style={{
-            fontSize: '0.85rem',
+            fontSize: '0.88rem',
+            fontWeight: 800,
+            color: 'var(--color-navy)',
+            letterSpacing: '0.2px'
+          }}>
+            JSPM's Jayawantrao Sawant College Of Engineering
+          </span>
+          <span style={{
+            fontSize: '0.7rem',
             fontWeight: 600,
-            color: 'var(--color-text-light)',
-            backgroundColor: 'var(--color-soft-blue)',
-            padding: '0.3rem 0.8rem',
-            borderRadius: '20px'
-          }}>University Portal Edition</span>
+            color: 'var(--color-sky-blue)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            marginTop: '0.1rem'
+          }}>
+            Department of Computer Engineering
+          </span>
         </div>
       </header>
 
@@ -288,22 +312,70 @@ export const LandingPage: React.FC<LandingPageProps> = ({ units, onSelectUnit })
                       </div>
                     </div>
 
-                    <button
-                      className="btn-primary"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onSelectUnit(unit.id);
-                      }}
-                      style={{
-                        padding: '0.5rem 1rem',
-                        fontSize: '0.8rem',
-                        borderRadius: '8px',
-                        justifyContent: 'center',
-                        width: '100%'
-                      }}
-                    >
-                      {progress > 0 ? 'Continue' : 'Start Learning'}
-                    </button>
+                    <div style={{ display: 'flex', gap: '0.4rem', width: '100%' }}>
+                      <button
+                        className="btn-primary"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectUnit(unit.id);
+                        }}
+                        style={{
+                          padding: '0.5rem 1rem',
+                          fontSize: '0.8rem',
+                          borderRadius: '8px',
+                          justifyContent: 'center',
+                          flex: 1
+                        }}
+                      >
+                        {progress > 0 ? 'Continue' : 'Start Learning'}
+                      </button>
+
+                      {progress > 0 && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (window.confirm(`Are you sure you want to reset your progress for Unit ${unit.id}?`)) {
+                              localStorage.removeItem(`cns_unit_${unit.id}_progress`);
+                              localStorage.removeItem(`cns_unit_${unit.id}_score`);
+                              setUnitProgress(prev => ({
+                                ...prev,
+                                [unit.id]: 0
+                              }));
+                            }
+                          }}
+                          title="Reset Progress"
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: '0.5rem',
+                            border: '1.5px solid var(--color-border)',
+                            borderRadius: '8px',
+                            backgroundColor: 'var(--color-white)',
+                            color: 'var(--color-text-light)',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s',
+                            width: '36px',
+                            height: '36px'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.borderColor = 'var(--color-incorrect)';
+                            e.currentTarget.style.color = 'var(--color-incorrect)';
+                            e.currentTarget.style.backgroundColor = '#FDF3F2';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.borderColor = 'var(--color-border)';
+                            e.currentTarget.style.color = 'var(--color-text-light)';
+                            e.currentTarget.style.backgroundColor = 'var(--color-white)';
+                          }}
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                            <path d="M3 3v5h5"/>
+                          </svg>
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               );
@@ -326,35 +398,31 @@ export const LandingPage: React.FC<LandingPageProps> = ({ units, onSelectUnit })
         Designed for college CNS curricula • Interactive Concept Labs © {new Date().getFullYear()}
       </footer>
 
-      {/* Global CSS overrides inside component for single screen layouts */}
       <style>{`
-        @media (min-width: 1024px) and (min-height: 720px) {
-          body {
-            height: 100vh;
-            overflow: hidden;
-          }
-          .landing-container {
-            height: 100vh;
-            justify-content: space-between;
-          }
-          .hero-split-row {
-            height: calc(100vh - 340px);
-            margin: 0 !important;
-          }
+        body {
+          overflow-y: auto !important;
         }
-        @media (max-width: 1023px) or (max-height: 719px) {
-          body {
-            overflow-y: auto;
-          }
-          .landing-container {
-            overflow-y: auto !important;
-          }
+        .landing-container {
+          min-height: 100vh;
+          overflow-y: auto !important;
+        }
+        @media (min-width: 992px) {
           .hero-split-row {
-            flex-direction: column;
-            gap: 1.5rem;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 2rem !important;
           }
           .units-row {
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+            grid-template-columns: repeat(5, 1fr) !important;
+          }
+        }
+        @media (max-width: 991px) {
+          .hero-split-row {
+            flex-direction: column !important;
+            gap: 1.5rem !important;
+          }
+          .units-row {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
           }
         }
       `}</style>

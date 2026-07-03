@@ -562,12 +562,6 @@ export const unitsData: UnitData[] = [
   },
   {
     id: 4,
-    title: "Transport Layer",
-    subtitle: "Unit 4",
-    description: "Study connection-oriented TCP, connectionless UDP, the 3-way handshake, flow control, and TCP congestion window phases.",
-    icon: "Layers",
-    color: "#FFF4E5", // Light Orange
-    id: 4,
     title: "Transport Layer Protocols",
     subtitle: "Unit 4",
     description: "Study connection-oriented TCP, connectionless UDP, the 3-way handshake, flow control, and TCP congestion window phases.",

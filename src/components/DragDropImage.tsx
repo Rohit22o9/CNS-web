@@ -306,7 +306,7 @@ export const DragDropImage: React.FC<DragDropImageProps> = ({ questionData, onAn
           {/* Top Bit Indicators */}
           <text x="40" y="22" fontFamily="Poppins" fontSize="9" fontWeight="700" fill="var(--color-text-light)">0</text>
           <text x="300" y="22" fontFamily="Poppins" fontSize="9" fontWeight="700" fill="var(--color-text-light)" textAnchor="middle">15</text>
-          <text x="560" y="22" fontFamily="Poppins" fontSize="9" fontWeight="700" fill="var(--color-text-light)" textAnchor="right">31</text>
+          <text x="560" y="22" fontFamily="Poppins" fontSize="9" fontWeight="700" fill="var(--color-text-light)" textAnchor="end">31</text>
         </svg>
       );
     }
